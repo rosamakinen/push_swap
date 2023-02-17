@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 10:01:43 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/02/06 16:08:29 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/02/17 13:28:05 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int	check_for_duplicates(int data, t_list *stack)
 		if (stack->data == data)
 		{
 			flag = 1;
-			write(2, "Error with dupliacets\n", 23);
-			exit (0);
+			write(2, "Error\n", 7);
+			exit (1);
 		}
 		stack = stack->next;
 	}
@@ -44,20 +44,34 @@ int	check_for_nonint(char *argument)
 	}
 	if (flag == 1)
 	{
-		write(2, "Error with non int\n", 20);
-		exit (0);
+		write(2, "Error\n", 7);
+		exit (1);
 	}
 	return(flag);
 }
 
-int	check_for_bigger(int data);
+int	check_for_range(int data)
 {
 	int flag;
 	flag= 0;
+	//ft_printf("atoi returns %i\n", data); //
 		if (data == -1 || data == 0)
 			{
-				write(2, "Error with too big int\n", 24);
-				exit (0);
+				write(2, "Error\n", 7);
+				exit (1);
 			}
-	return (flag)
+	return (flag);
+}
+
+int	list_length(t_list *stack)
+{
+	int	len;
+	len = 0;
+
+	while (stack)
+	{
+		len++;
+		stack = stack->next;
+	}
+	return (len);
 }

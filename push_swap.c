@@ -6,23 +6,45 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 11:56:07 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/02/06 16:05:33 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/02/17 13:28:07 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_list	*add_top(t_list *top, int new_data)
-{
-	t_list *node;
+// t_list	*add_top(t_list *top, int new_data) // remove maybe!!
+// {
+// 	t_list	*node;
 
+// 	node = (t_list *) malloc(sizeof(t_list));
+// 		if (node == NULL)
+// 			return (NULL);
+// 	node->data = new_data;
+// 	node->next = top;
+
+// 	return (node);
+// }
+
+t_list *add_bottom(t_list *list, int new_data)
+{
+	t_list	*node;
+	t_list	*top;
+
+	top = list;
 	node = (t_list *) malloc(sizeof(t_list));
 		if (node == NULL)
 			return (NULL);
 	node->data = new_data;
-	node->next = top;
-
-	return (node);
+	while(list)
+	{
+		if (list->next == NULL)
+		{
+			list->next = node;
+			node->next = NULL;
+		}
+		list = list->next;
+	}
+	return (top);
 }
 
 t_list	*add_new(int new_data)
@@ -53,16 +75,15 @@ t_list	*fill_stack(t_list *stack, char *argument)
 	{
 		data = ft_atoi(array[i]);
 		check_for_range(data);
-		//ft_printf("data from array %d is %i\n", i, data); //remove !!
 		flag = check_for_duplicates(data, stack);
 		if (!stack && flag == 0)
 			stack = add_new(data);
 		else
 		{
 			if (flag == 0)
-			stack = add_top(stack, data);
+			stack = add_bottom(stack, data);
 		}
-		//ft_printf("data of the node is: %i\n", stack->data);
+		//ft_printf("what happens here %i\n", stack->data);
 		i++;
 	}
 	return (stack);
@@ -71,22 +92,35 @@ t_list	*fill_stack(t_list *stack, char *argument)
 int	main(int argc, char **argv)
 {
 	int	i;
-	t_list *stack;
+	t_list	*stack_a;
+	t_list	*stack_b;
+	t_list	**head_a;
 
 	i = 1;
-	stack = NULL;
+	stack_a = NULL;
+	stack_b = NULL;
+	head_a = NULL;
+
 	if (argc < 2)
 		return (0);
 	while (i < argc)
 	{
-		// ft_printf("[argv %d] %s\n", i, argv[i]); //remove !!
-		stack = fill_stack(stack, argv[i]);
+		//ft_printf("we get here??\n");
+		stack_a = fill_stack(stack_a, argv[i]);
 		i++;
 	}
-	// while (stack) //remove !!
+	// while (stack_a)
 	// {
-	// 	ft_printf("stack data %i\n", stack->data);
-	// 	stack = stack->next;
+	// 	//ft_printf("issue not getting here?\n");
+	// 	ft_printf("%i\n", stack_a->data);
+	// 	stack_a = stack_a->next;
 	// }
+	stack_a = push_swap(stack_a, stack_b);
+	while (stack_a)
+	{
+		// ft_printf("issue not getting here?\n");
+		ft_printf("%i\n", stack_a->data);
+		stack_a = stack_a->next;
+	}
 	return (0);
 }
