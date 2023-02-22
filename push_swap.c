@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 11:56:07 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/02/17 13:28:07 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/02/22 11:00:19 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,12 +94,10 @@ int	main(int argc, char **argv)
 	int	i;
 	t_list	*stack_a;
 	t_list	*stack_b;
-	t_list	**head_a;
 
 	i = 1;
 	stack_a = NULL;
 	stack_b = NULL;
-	head_a = NULL;
 
 	if (argc < 2)
 		return (0);
@@ -115,7 +113,9 @@ int	main(int argc, char **argv)
 	// 	ft_printf("%i\n", stack_a->data);
 	// 	stack_a = stack_a->next;
 	// }
-	stack_a = push_swap(stack_a, stack_b);
+	//stack_a = push_swap(stack_a, stack_b);
+	//stack_a = sort(stack_a, stack_b);
+	sort(stack_a, stack_b);
 	while (stack_a)
 	{
 		// ft_printf("issue not getting here?\n");
