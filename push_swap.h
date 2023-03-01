@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 11:26:21 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/02/22 10:26:22 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/03/01 14:42:30 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,12 @@ int	check_for_nonint(char *argument);
 int	check_for_duplicates(int data, t_list *stack);
 int	check_for_range(int data);
 int	list_length(t_list *stack);
+void	print_stack(t_list *head); // PRINT STACK!!! REMOVE??
 
-void	swap_a(t_list **head, int print);
-void	swap_b(t_list **head, int print);
+void	swap(t_list **head, char *print);
 void	swap_both(t_list *stack_a, t_list *stack_b);
+void	rotate(t_list **head, char *print);
+void	rotate_both(t_list **head_a, t_list **head_b);
+void	rev_rotate(t_list **head, char *print);
 
 #endif
