@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 11:55:28 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/03/01 14:45:14 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/03/01 14:54:36 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,11 @@ void	rotate_both(t_list **head_a, t_list **head_b)
 	rotate(head_a, NULL);
 	rotate(head_b, NULL);
 	ft_printf("rr\n");
+}
+
+void	rev_rotate_both(t_list **head_a, t_list **head_b)
+{
+	rev_rotate(head_a, NULL);
+	rev_rotate(head_b, NULL);
+	ft_printf("rrr\n");
 }

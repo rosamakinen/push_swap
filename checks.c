@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 10:01:43 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/02/22 10:11:54 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/03/02 12:12:20 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	check_for_range(int data)
 	int flag;
 	flag= 0;
 	//ft_printf("atoi returns %i\n", data); //
-		if (data == -1 || data == 0)
+		if (data == -1 || data == -2)
 			{
 				write(2, "Error\n", 7);
 				exit (1);
