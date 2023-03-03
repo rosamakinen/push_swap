@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 10:01:43 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/03/02 12:12:20 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/03/03 11:47:54 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,27 @@ int	check_for_range(int data)
 int	list_length(t_list *stack)
 {
 	int	len;
-	len = 0;
 
+	len = 0;
 	while (stack)
 	{
 		len++;
 		stack = stack->next;
 	}
 	return (len);
+}
+
+void	stack_reposition(t_list **head)
+{
+	t_list	*temp;
+	int	pos;
+
+	temp = *head;
+	pos = 1;
+	while(temp)
+	{
+		temp->position = pos;
+		temp = temp->next;
+		pos++;
+	}
 }

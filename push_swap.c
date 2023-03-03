@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 11:56:07 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/03/02 12:11:25 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/03/03 11:56:35 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@ t_list *add_bottom(t_list *list, int new_data)
 {
 	t_list	*node;
 	t_list	*top;
+	static int		position;
 
+	position = 1;
 	top = list;
 	node = (t_list *) malloc(sizeof(t_list));
 		if (node == NULL)
@@ -40,9 +42,11 @@ t_list *add_bottom(t_list *list, int new_data)
 		if (list->next == NULL)
 		{
 			list->next = node;
+			node->position = position;
 			node->next = NULL;
 		}
 		list = list->next;
+		position++;
 	}
 	return (top);
 }
@@ -50,11 +54,14 @@ t_list *add_bottom(t_list *list, int new_data)
 t_list	*add_new(int new_data)
 {
 	t_list *new_node;
+	int		position;
 
+	position = 1;
 	new_node = (t_list *) malloc(sizeof(t_list));
 		if (new_node == NULL)
 			return (NULL);
 	new_node->data = new_data;
+	new_node->position = position;
 	new_node->next = NULL;
 
 	return (new_node);
@@ -83,7 +90,6 @@ t_list	*fill_stack(t_list *stack, char *argument)
 			if (flag == 0)
 			stack = add_bottom(stack, data);
 		}
-		//ft_printf("what happens here %i\n", stack->data);
 		i++;
 	}
 	return (stack);
@@ -97,9 +103,11 @@ void	print_stack(t_list *head)
 	while (temp)
 	{
 		ft_printf("%i\n", temp->data);
+		//ft_printf("pos: %i\n", temp->position);
 		temp = temp->next;
 	}
 }
+
 
 int	main(int argc, char **argv)
 {
