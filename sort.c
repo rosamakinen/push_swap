@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 08:18:49 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/03/03 13:21:55 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/03/06 12:47:37 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ t_list	*sort(t_list *stack_a, t_list *stack_b)
 	stack_b = 0;
 	len = list_length(stack_a);
 	check = if_sorted(stack_a);
+	if (len == 1)
+		return (0);
 	if (check == 0)
 	{
 		ft_printf("is sorted\n");
@@ -63,10 +65,15 @@ t_list	*sort(t_list *stack_a, t_list *stack_b)
 	// 	//do reversal??
 	// 	//&& exit with success??
 	// }
-	if (len < 6)
+	if (len <= 3)
 	{
 		mini_sort(stack_a, stack_b);
 	}
+	if (len > 3)
+	{
+		big_sort_initializer(stack_a, stack_b, check);
+	}
+
 	head = stack_a;
 	//print_stack(head);
 	return (head);

@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 10:29:26 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/03/02 11:55:51 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/03/06 08:16:31 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,5 @@ void	push(t_list **from_head, t_list **to_head, char *print)
 		*to_head = from_temp;
 	}
 	if (print)
-		ft_printf("%s", print);
+		ft_printf("%s\n", print);
 }
