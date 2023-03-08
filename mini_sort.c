@@ -6,28 +6,27 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 07:59:31 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/03/06 15:12:57 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/03/08 14:30:08 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_list	*mini_sort(t_list *stack_a, t_list *stack_b)
+t_list	*mini_sort(t_list *stack_a)
 {
 	t_list	*second;
 	t_list	*head;
 	int		len;
 	int		check;
 
-	stack_b = NULL;
 	len = list_length(stack_a);
 	check = if_rev_sorted(stack_a);
 	second = stack_a->next;
 	head = sort_3(stack_a, second, check);
 	if (len == 2 && (head->data > second->data))
 			swap(&head, "sa");
-	ft_printf("final result:\n");
-	print_stack(head);
+	//ft_printf("final result:\n");
+	//print_stack(head);
 	return (head);
 }
 
@@ -49,9 +48,7 @@ t_list	*sort_3(t_list *stack_a, t_list *second, int check)
 	if (stack_a->data < second->data && \
 		second->data > second->next->data)
 	{
-		swap(&stack_a, "sa");
-		rotate(&stack_a, "ra");
-
+		rev_rotate(&stack_a, "rra");
 	}
 	head = stack_a;
 	return (head);

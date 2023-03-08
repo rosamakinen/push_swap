@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 08:18:49 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/03/06 12:47:37 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/03/08 14:01:24 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ t_list	*sort(t_list *stack_a, t_list *stack_b)
 	// }
 	if (len <= 3)
 	{
-		mini_sort(stack_a, stack_b);
+		mini_sort(stack_a);
 	}
 	if (len > 3)
 	{
@@ -75,7 +75,8 @@ t_list	*sort(t_list *stack_a, t_list *stack_b)
 	}
 
 	head = stack_a;
-	//print_stack(head);
+	ft_printf("______FINAL RESULT OF STACK_A______\n");
+	print_stack(head);
 	return (head);
 }
 
