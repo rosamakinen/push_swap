@@ -76,6 +76,19 @@ int	list_length(t_list *stack)
 	return (len);
 }
 
+int	chunk_length(t_list *stack, int chunk)
+{
+	int	len;
+
+	len = 0;
+	while (stack->chunk == chunk)
+	{
+		len++;
+		stack = stack->next;
+	}
+	return (len);	
+}
+
 void	stack_reposition(t_list **head)
 {
 	t_list	*temp;

@@ -25,8 +25,8 @@ t_list	*mini_sort(t_list *stack_a)
 	head = sort_3(stack_a, second, check);
 	if (len == 2 && (head->data > second->data))
 			swap(&head, "sa");
-	//ft_printf("final result:\n");
-	//print_stack(head);
+	ft_printf("result of minisort is:\n");
+	print_stack(head);
 	return (head);
 }
 
@@ -37,19 +37,23 @@ t_list	*sort_3(t_list *stack_a, t_list *second, int check)
 	if (check == 0)
 		{
 			swap(&stack_a, "sa");
-			rev_rotate(&stack_a, "ra");
+			rev_rotate(&stack_a, "rra");
 		}
 	if (stack_a->data > second->data && \
 		stack_a->data < second->next->data)
 			swap(&stack_a, "sa");
 	if (stack_a->data > second->data && \
-		stack_a->data > second->next->data)
+		second->data < second->next->data)
 			rotate(&stack_a, "ra");
 	if (stack_a->data < second->data && \
-		second->data > second->next->data)
+		stack_a->data < second->next->data)
 	{
-		rev_rotate(&stack_a, "rra");
+		swap(&stack_a, "sa");
+		rotate(&stack_a, "ra");
 	}
+	if (stack_a->data < second->data && \
+		stack_a->data > second->next->data)
+		rev_rotate(&stack_a, "rra");
 	head = stack_a;
 	return (head);
 }

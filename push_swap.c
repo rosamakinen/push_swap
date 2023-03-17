@@ -12,19 +12,6 @@
 
 #include "push_swap.h"
 
-// t_list	*add_top(t_list *top, int new_data) // remove maybe!!
-// {
-// 	t_list	*node;
-
-// 	node = (t_list *) malloc(sizeof(t_list));
-// 		if (node == NULL)
-// 			return (NULL);
-// 	node->data = new_data;
-// 	node->next = top;
-
-// 	return (node);
-// }
-
 t_list *add_bottom(t_list *list, int new_data)
 {
 	t_list	*node;
@@ -78,7 +65,7 @@ t_list	*fill_stack(t_list *stack, char *argument)
 	flag = 0;
 	array = ft_split(argument, ' ');
 	flag = check_for_nonint(argument);
-	while (array[i] != '\0')
+	while (array[i] != NULL)
 	{
 		data = ft_atoi(array[i]);
 		check_for_range(data);
@@ -114,12 +101,10 @@ int	main(int argc, char **argv)
 	int	i;
 	t_list	*stack_a;
 	t_list	*stack_b;
-	t_list	*print_temp;
 
 	i = 1;
 	stack_a = NULL;
 	stack_b = NULL;
-	print_temp = NULL;
 
 	if (argc < 2)
 		return (0);
@@ -129,14 +114,6 @@ int	main(int argc, char **argv)
 		stack_a = fill_stack(stack_a, argv[i]);
 		i++;
 	}
-	// while (stack_a)
-	// {
-	// 	ft_printf("%i\n", stack_a->data);
-	// 	stack_a = stack_a->next;
-	// }
-	//stack_a = push_swap(stack_a, stack_b);
-	//stack_a = sort(stack_a, stack_b);
-	print_temp = stack_a;
 	print_stack(stack_a);
 	sort(stack_a, stack_b);
 	return (0);

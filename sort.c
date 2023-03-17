@@ -48,7 +48,8 @@ t_list	*sort(t_list *stack_a, t_list *stack_b)
 	int	check;
 	t_list *head;
 
-	stack_b = 0;
+	stack_b = NULL;
+	head = NULL;
 	len = list_length(stack_a);
 	check = if_sorted(stack_a);
 	if (len == 1)
@@ -67,16 +68,16 @@ t_list	*sort(t_list *stack_a, t_list *stack_b)
 	// }
 	if (len <= 3)
 	{
-		mini_sort(stack_a);
+		head = mini_sort(stack_a);
 	}
+	ft_printf("--- final result after mini sort ---\n");
+	print_stack(head);
 	if (len > 3)
 	{
-		big_sort_initializer(stack_a, stack_b, check);
+		head = big_sort_initializer(stack_a, stack_b);
 	}
-
-	head = stack_a;
-	ft_printf("______FINAL RESULT OF STACK_A______\n");
-	print_stack(head);
+	//ft_printf("______FINAL RESULT OF STACK_A______\n");
+	//print_stack(head);
 	return (head);
 }
 
