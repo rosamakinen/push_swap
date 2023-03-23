@@ -30,14 +30,16 @@ typedef struct s_list
 
 t_list	*fill_stack(t_list *stack, char *argument);
 t_list	*add_new(int new_data);
-//t_list	*add_top(t_list *top, int new_data);
+//t_list	*add_top(t_list *top, int new_data); //REMOVVE??
 t_list	*sort(t_list *stack_a, t_list *stack_b);
-t_list	*mini_sort(t_list *stack_a);
+t_list	*mini_sort(t_list **stack);
 t_list	*big_sort_initializer(t_list *stack_a, t_list *stack_b);
-t_list	*sort_3(t_list *stack_a, t_list *second, int check);
+t_list	*sort_3(t_list **stack_a, t_list **second, int check);
 t_list	*preprocess(t_list **stack_a, t_list **stack_b, int limit, int stack_len, int chunk);
-t_list	*process_a(t_list **stack_a, t_list **stack_b, int limit, int stack_len, int chunk);
-t_list *process_b(t_list **stack_a, t_list **stack_b, int limit, int stack_len, int chunk);
+t_list	*process_a(t_list **stack_a, t_list **stack_b, int limit, int stack_len, int chunk); // REMOVE??
+t_list *process_b(t_list **stack_a, t_list **stack_b, int limit, int stack_len, int chunk); // REMPVE??
+t_list	*rotate_and_add(t_list **stack_a, t_list **stack_b, int target_position);
+
 int	check_for_nonint(char *argument);
 int	check_for_duplicates(int data, t_list *stack);
 int	check_for_range(int data);
@@ -47,6 +49,7 @@ int	if_rev_sorted(t_list *stack);
 int	bubblesort(t_list *stack, int len);
 int	get_idx(int len); /// REMOVE??
 int	chunk_length(t_list *stack, int chunk);
+int	find_end_position(t_list **stack_a, t_list **top_at_b);
 
 void	print_stack(t_list *head); // PRINT STACK!!! REMOVE??
 void	stack_reposition(t_list **head);
@@ -57,7 +60,5 @@ void	rotate_both(t_list **head_a, t_list **head_b);
 void	rev_rotate(t_list **head, char *print);
 void	rev_rotate_both(t_list **head_a, t_list **head_b);
 void	push(t_list **from_head, t_list **to_head, char *print);
-t_list	*sort_3(t_list *stack_a, t_list *second, int check);
-
 
 #endif

@@ -68,9 +68,9 @@ t_list	*sort(t_list *stack_a, t_list *stack_b)
 	// }
 	if (len <= 3)
 	{
-		head = mini_sort(stack_a);
+		head = mini_sort(&stack_a);
 	}
-	ft_printf("--- final result after mini sort ---\n");
+	//ft_printf("--- final result after mini sort ---\n");
 	print_stack(head);
 	if (len > 3)
 	{
