@@ -56,7 +56,7 @@ t_list	*sort(t_list *stack_a, t_list *stack_b)
 		return (0);
 	if (check == 0)
 	{
-		ft_printf("is sorted\n");
+		//ft_printf("is sorted\n");
 		//do something, exit with success??
 	}
 	// check = if_rev_sorted(stack_a);
@@ -71,7 +71,7 @@ t_list	*sort(t_list *stack_a, t_list *stack_b)
 		head = mini_sort(&stack_a);
 	}
 	//ft_printf("--- final result after mini sort ---\n");
-	print_stack(head);
+	//print_stack(head);
 	if (len > 3)
 	{
 		head = big_sort_initializer(stack_a, stack_b);

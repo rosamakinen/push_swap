@@ -13,7 +13,8 @@
 NAME = push_swap
 HEADER = -I push_swap.h
 SRC_DIR = ./
-FILES = push_swap checks swap sort rotate push mini_sort big_sort
+FILES = push_swap checks swap sort rotate push mini_sort big_sort \
+		free 
 SRC = $(addprefix $(SRC_DIR),$(addsuffix .c, $(FILES)))
 OBJ = $(addprefix $(SRC_DIR),$(addsuffix .o, $(FILES)))
 FLAGS = -Wall -Wextra -Werror -g

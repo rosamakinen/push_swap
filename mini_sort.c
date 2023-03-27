@@ -27,9 +27,9 @@ t_list	*mini_sort(t_list **stack)
 		swap(&head, "sa");
 	if (len == 3)
 		head = sort_3(&(*stack), &second, check);
-	ft_printf("\n");
-	ft_printf("result of minisort is:\n");
-	print_stack(head);
+	// ft_printf("\n");
+	// ft_printf("result of minisort is:\n");
+	//print_stack(head);
 	return (head);
 }
 
@@ -37,8 +37,8 @@ t_list	*sort_3(t_list **stack_a, t_list **second, int check)
 {
 	t_list	*head;
 
-	ft_printf("this is from minisort3\n");
-	ft_printf("check is %i\n", check);
+	// ft_printf("this is from minisort3\n");
+	// ft_printf("check is %i\n", check);
 	if (check == 0)
 		{
 			swap(stack_a, "sa");

@@ -21,7 +21,7 @@ int	check_for_duplicates(int data, t_list *stack)
 		if (stack->data == data)
 		{
 			flag = 1;
-			write(2, "Error\n", 7);
+			write(2, "Error\n", 6);
 			exit (1);
 		}
 		stack = stack->next;
@@ -44,7 +44,7 @@ int	check_for_nonint(char *argument)
 	}
 	if (flag == 1)
 	{
-		write(2, "Error\n", 7);
+		write(2, "Error\n", 6);
 		exit (1);
 	}
 	return(flag);
@@ -57,7 +57,7 @@ int	check_for_range(int data)
 	//ft_printf("atoi returns %i\n", data); //
 		if (data == -1 || data == -2)
 			{
-				write(2, "Error\n", 7);
+				write(2, "Error\n", 6);
 				exit (1);
 			}
 	return (flag);

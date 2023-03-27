@@ -79,6 +79,7 @@ t_list	*fill_stack(t_list *stack, char *argument)
 		}
 		i++;
 	}
+	free_array(array);
 	return (stack);
 }
 
@@ -114,7 +115,8 @@ int	main(int argc, char **argv)
 		stack_a = fill_stack(stack_a, argv[i]);
 		i++;
 	}
-	print_stack(stack_a);
-	sort(stack_a, stack_b);
+//	print_stack(stack_a);
+	stack_a = sort(stack_a, stack_b);
+	free_stack(&stack_a);
 	return (0);
 }
