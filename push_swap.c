@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 11:56:07 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/03/03 11:56:35 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/03/27 12:35:56 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,29 @@ t_list	*fill_stack(t_list *stack, char *argument)
 	char **array;
 	int	i;
 	int	flag;
+	//int test = 0;
+
 
 	i = 0;
 	flag = 0;
 	array = ft_split(argument, ' ');
-	flag = check_for_nonint(argument);
+	flag = check_for_nonint(argument, flag);
 	while (array[i] != NULL)
 	{
 		data = ft_atoi(array[i]);
-		check_for_range(data);
-		flag = check_for_duplicates(data, stack);
+		//ft_printf("data : %i", data);
+		//ft_printf("flag : %i,", flag);
+		//if (ft_strcmp(array[i], "-1") != 0)
+		flag = check_for_range(data, array[i], flag);
+		//test = ft_strcmp(array[i], "-1");
+		//ft_printf("array %s\n", array[i]);
+		//ft_printf("test is %i\n", test);
+		flag = check_for_duplicates(data, stack, flag);
+		//ft_printf("flag : %i\n", flag);
+		if (flag == 1)
+		{
+			exit_and_free(array, stack);
+		}
 		if (!stack && flag == 0)
 			stack = add_new(data);
 		else
@@ -79,7 +92,7 @@ t_list	*fill_stack(t_list *stack, char *argument)
 		}
 		i++;
 	}
-	free_array(array);
+	free_array(&array);
 	return (stack);
 }
 
@@ -115,8 +128,10 @@ int	main(int argc, char **argv)
 		stack_a = fill_stack(stack_a, argv[i]);
 		i++;
 	}
-//	print_stack(stack_a);
+		//ft_printf("we get here??\n");
+	//print_stack(stack_a);
 	stack_a = sort(stack_a, stack_b);
+	//print_stack(stack_a);
 	free_stack(&stack_a);
 	return (0);
 }

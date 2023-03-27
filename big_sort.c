@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 09:12:01 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/03/08 15:20:03 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/03/27 10:40:12 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_list	*big_sort_initializer(t_list *stack_a, t_list *stack_b)
 	target_position = 0;
 	preprocess(&stack_a, &stack_b, limit, len, chunk);
 	// ft_printf("\n");
-	// ft_printf("**_______ PREPROCESS OK _______**\n");
+	//ft_printf("**_______ PREPROCESS OK _______**\n");
 	// ft_printf("\n");
 	while (stack_b)
 	{
@@ -76,12 +76,12 @@ t_list *preprocess(t_list **stack_a, t_list **stack_b, int limit, int stack_len,
 				rotate(stack_a, "ra");
 			}
 		}
-	}	
+	}
 	if (stack_len <= 3)
 	{
 			mini_sort(stack_a);
 	}
-	// ft_printf("_____ STACK A IS LIKE THIS: _____\n");
+	//ft_printf("_____ STACK A IS LIKE THIS: _____\n");
 	// print_stack(*stack_a);
 	// ft_printf("\n");
 	// ft_printf("_____ STACK B IS LIKE THIS: _____\n");
@@ -90,7 +90,7 @@ t_list *preprocess(t_list **stack_a, t_list **stack_b, int limit, int stack_len,
 	if (stack_len > 3)
 	{
 		// ft_printf("\n");
-		// ft_printf("___ NEW SORTCYCLE FOR A ___\n");
+		//ft_printf("___ NEW SORTCYCLE FOR A ___\n");
 		// ft_printf("\n");
 		chunk++;
 		// ft_printf("___ NEW CHUNK DIVISION FOR A, chunk %i ___\n", chunk);
