@@ -6,11 +6,9 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 17:58:55 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/03/06 12:47:33 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/02/13 10:57:57 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "libft.h"
 
 int	ft_atoi(const char *str)
 {
@@ -33,7 +31,7 @@ int	ft_atoi(const char *str)
 		if (result * symbol > 2147483647)
 			return (-1);
 		if (result * symbol < -2147483648)
-			return (-2);
+			return (0);
 		else
 		result = result * 10 + (str[i] - 48);
 		i++;

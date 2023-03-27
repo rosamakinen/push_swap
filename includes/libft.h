@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 09:57:07 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/03/06 12:49:01 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/01/17 09:02:40 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,6 @@ void	ft_putstr(char *str);
 void	ft_putnbr(int nb);
 void	ft_putchar(char c);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
-void	ft_swap(int *a, int *b);
+int	ft_swap(int *a, int *b);
 
 #endif

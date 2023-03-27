@@ -97,6 +97,7 @@ char	**ft_split(char const *s, char c)
 {
 	size_t	count;
 	char	**s_array;
+	char	**temp;
 
 	if (!s)
 		return (0);
@@ -105,5 +106,12 @@ char	**ft_split(char const *s, char c)
 	if (!(s_array))
 		return (NULL);
 	s_array = add_word(s_array, s, c, count);
-	return (s_array);
+	temp = s_array;
+	while (count > 0)
+	{
+		free(s_array[count]);
+		count--;
+	}
+	free(s_array);
+	return (temp);
 }
