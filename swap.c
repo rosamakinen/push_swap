@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 11:25:11 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/03/03 11:40:00 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/03/28 09:15:58 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	swap(t_list **head, char *print)
 
 	}
 	ft_printf("%s\n", print);
+	// ft_printf("stack after swap is\n");
+	// print_stack(*head);
 }
 
 void swap_both(t_list *stack_a, t_list *stack_b)

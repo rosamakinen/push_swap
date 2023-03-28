@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 09:12:01 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/03/27 10:40:12 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/03/28 09:38:54 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,25 +30,36 @@ t_list	*big_sort_initializer(t_list *stack_a, t_list *stack_b)
 	target_position = 0;
 	preprocess(&stack_a, &stack_b, limit, len, chunk);
 	// ft_printf("\n");
-	//ft_printf("**_______ PREPROCESS OK _______**\n");
+	// ft_printf("**_______ PREPROCESS OK _______**\n");
 	// ft_printf("\n");
+	//print_stack(stack_b);
 	while (stack_b)
 	{
+		len = list_length(stack_b);
+		if ((len == 2 || len == 3) && chunk != 999)
+		{
+			if (len == 2)
+				swap(&stack_b, "sb");
+			else
+				rev_sort_3(&stack_b, &stack_b->next, 1);
+			chunk = 999;
+		}
 		//ft_printf("segcheck\n");
-		target_position = find_end_position(&stack_a, &stack_b, 2147483647);
+		//print_stack(stack_b);
 		// ft_printf("**_______ STACK A IS: _______**\n");
 		// print_stack(stack_a);
 		// ft_printf("**_______ END OF STACK A _______**\n");
 		// ft_printf("**_______ STACK B IS: _______**\n");
 		// print_stack(stack_b);
 		// ft_printf("**_______ END OF STACK B _______**\n");
+		target_position = find_end_position(&stack_a, &stack_b, 2147483647);
 		rotate_and_add(&stack_a, &stack_b, target_position);
 		// ft_printf("do we ever ever get here??\n");
 	}
 	free_stack(&stack_b);
 	reorder_a(&stack_a);
 	// ft_printf("2. security check for stack_a\n");
-	//print_stack(stack_a);
+	// print_stack(stack_a);
 	//print_stack(stack_b);
 	//print_stack(temp);
 	return (stack_a);
@@ -81,7 +92,7 @@ t_list *preprocess(t_list **stack_a, t_list **stack_b, int limit, int stack_len,
 	{
 			mini_sort(stack_a);
 	}
-	//ft_printf("_____ STACK A IS LIKE THIS: _____\n");
+	// ft_printf("_____ STACK A IS LIKE THIS: _____\n");
 	// print_stack(*stack_a);
 	// ft_printf("\n");
 	// ft_printf("_____ STACK B IS LIKE THIS: _____\n");
@@ -90,7 +101,7 @@ t_list *preprocess(t_list **stack_a, t_list **stack_b, int limit, int stack_len,
 	if (stack_len > 3)
 	{
 		// ft_printf("\n");
-		//ft_printf("___ NEW SORTCYCLE FOR A ___\n");
+		// ft_printf("___ NEW SORTCYCLE FOR A ___\n");
 		// ft_printf("\n");
 		chunk++;
 		// ft_printf("___ NEW CHUNK DIVISION FOR A, chunk %i ___\n", chunk);

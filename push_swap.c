@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 11:56:07 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/03/27 12:35:56 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/03/27 15:01:34 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ t_list	*fill_stack(t_list *stack, char *argument)
 	while (array[i] != NULL)
 	{
 		data = ft_atoi(array[i]);
-		//ft_printf("data : %i", data);
-		//ft_printf("flag : %i,", flag);
+		//ft_printf("data : %i\n", data);
+		//ft_printf("flag : %i\n,", flag);
 		//if (ft_strcmp(array[i], "-1") != 0)
 		flag = check_for_range(data, array[i], flag);
 		//test = ft_strcmp(array[i], "-1");
@@ -121,7 +121,7 @@ int	main(int argc, char **argv)
 	stack_b = NULL;
 
 	if (argc < 2)
-		return (0);
+		exit (1);
 	while (i < argc)
 	{
 		//ft_printf("we get here??\n");

@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 11:26:21 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/03/27 12:27:49 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/03/27 15:11:32 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ t_list	*add_top(t_list *top, int new_data); //REMOVVE??
 t_list	*add_bottom(t_list *list, int new_data);
 t_list	*sort(t_list *stack_a, t_list *stack_b);
 t_list	*mini_sort(t_list **stack);
+t_list	*mini_sort_b(t_list **stack);
+t_list	*rev_sort_3(t_list **stack_a, t_list **second, int check);
 t_list	*big_sort_initializer(t_list *stack_a, t_list *stack_b);
 t_list	*sort_3(t_list **stack_a, t_list **second, int check);
 t_list	*preprocess(t_list **stack_a, t_list **stack_b, int limit, int stack_len, int chunk);
