@@ -6,13 +6,13 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:07:51 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/03/28 16:32:21 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/03/29 14:35:12 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_list	*mini_sort_b(t_list **stack)
+t_list	*mini_sort_b(t_list **stack, int chunk_flag)
 {
 	t_list	*second;
 	t_list	*head;
@@ -20,12 +20,17 @@ t_list	*mini_sort_b(t_list **stack)
 	int		check;
 
 	head = *stack;
-	len = list_length(*stack);
-	check = if_sorted(*stack);
+	if (chunk_flag == 0)
+		len = list_length(*stack);
+	if (chunk_flag > 0)
+		len = chunk_flag;
 	second = (*stack)->next;
-	// ft_printf("befor minisort of b:\n");
-	// ft_printf("list len %i :\n", len);
-	// print_stack(*stack);
+	ft_printf("befor minisort of b:\n");
+	ft_printf("list len %i\n", len);
+	print_stack(*stack);
+	check = if_sorted(*stack);
+	ft_printf("head->dta %i\n", head->data);
+	ft_printf("second->dta %i\n", second->data);
 	if (len == 2 && (head->data < second->data))
 		swap(&head, "sb");
 	// ft_printf("after minisort of b:\n");

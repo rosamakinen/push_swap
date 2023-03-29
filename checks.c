@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 10:01:43 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/03/27 12:34:18 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/03/29 13:55:25 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,14 @@ int	check_for_range(int data, char *str, int flag)
 int	list_length(t_list *stack)
 {
 	int	len;
+	t_list *temp;
 
 	len = 0;
-	while (stack)
+	temp = stack;
+	while (temp)
 	{
 		len++;
-		stack = stack->next;
+		temp = temp->next;
 	}
 	return (len);
 }

@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 08:18:49 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/03/28 09:21:14 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/03/29 07:53:27 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ t_list	*sort(t_list *stack_a, t_list *stack_b)
 			exit (0);
 		}
 	}
+	//print_stack(stack_a);
 	if (len <= 3)
 	{
 		head = mini_sort(&stack_a);

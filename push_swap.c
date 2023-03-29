@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 11:56:07 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/03/27 15:01:34 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/03/29 15:08:50 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ t_list *add_bottom(t_list *list, int new_data)
 	position = 1;
 	top = list;
 	node = (t_list *) malloc(sizeof(t_list));
-		if (node == NULL)
-			return (NULL);
+	if (node == NULL)
+		return (NULL);
 	node->data = new_data;
 	while(list)
 	{
@@ -30,6 +30,7 @@ t_list *add_bottom(t_list *list, int new_data)
 		{
 			list->next = node;
 			node->position = position;
+			node->previous = list;
 			node->next = NULL;
 		}
 		list = list->next;
@@ -50,6 +51,7 @@ t_list	*add_new(int new_data)
 	new_node->data = new_data;
 	new_node->position = position;
 	new_node->next = NULL;
+	new_node->previous = NULL;
 
 	return (new_node);
 }
@@ -67,32 +69,35 @@ t_list	*fill_stack(t_list *stack, char *argument)
 	flag = 0;
 	array = ft_split(argument, ' ');
 	flag = check_for_nonint(argument, flag);
-	while (array[i] != NULL)
+	if (array[i] != NULL)
 	{
-		data = ft_atoi(array[i]);
+		while (array[i] != NULL)
+		{
+			data = ft_atoi(array[i]);
 		//ft_printf("data : %i\n", data);
 		//ft_printf("flag : %i\n,", flag);
 		//if (ft_strcmp(array[i], "-1") != 0)
-		flag = check_for_range(data, array[i], flag);
+			flag = check_for_range(data, array[i], flag);
 		//test = ft_strcmp(array[i], "-1");
 		//ft_printf("array %s\n", array[i]);
 		//ft_printf("test is %i\n", test);
-		flag = check_for_duplicates(data, stack, flag);
+			flag = check_for_duplicates(data, stack, flag);
 		//ft_printf("flag : %i\n", flag);
-		if (flag == 1)
-		{
-			exit_and_free(array, stack);
+			if (flag == 1)
+			{
+				exit_and_free(array, stack);
+			}
+			if (!stack && flag == 0)
+				stack = add_new(data);
+			else
+			{
+				if (flag == 0)
+				stack = add_bottom(stack, data);
+			}
+			i++;
 		}
-		if (!stack && flag == 0)
-			stack = add_new(data);
-		else
-		{
-			if (flag == 0)
-			stack = add_bottom(stack, data);
-		}
-		i++;
+		free_array(&array);
 	}
-	free_array(&array);
 	return (stack);
 }
 
@@ -104,7 +109,7 @@ void	print_stack(t_list *head)
 	while (temp)
 	{
 		ft_printf("%i\n", temp->data);
-		//ft_printf("pos: %i\n", temp->position);
+		ft_printf("chunk: %i\n", temp->chunk);
 		temp = temp->next;
 	}
 }
@@ -128,7 +133,7 @@ int	main(int argc, char **argv)
 		stack_a = fill_stack(stack_a, argv[i]);
 		i++;
 	}
-		//ft_printf("we get here??\n");
+	//ft_printf("we get here??\n");
 	//print_stack(stack_a);
 	stack_a = sort(stack_a, stack_b);
 	//print_stack(stack_a);

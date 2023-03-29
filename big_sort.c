@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 09:12:01 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/03/28 09:38:54 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/03/29 16:00:27 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,22 @@ t_list	*big_sort_initializer(t_list *stack_a, t_list *stack_b)
 	while (stack_b)
 	{
 		len = list_length(stack_b);
+		// ft_printf("len is %i\n", len);
+		// ft_printf("data is %i\n", stack_b->data);
+		// ft_printf("next->data is %i\n", stack_b->next->data);
 		if ((len == 2 || len == 3) && chunk != 999)
 		{
-			if (len == 2)
+		// 	ft_printf("ENTRY");
+			if (len == 2 && stack_b->data < stack_b->next->data)
+			{
 				swap(&stack_b, "sb");
-			else
+			}
+			else if (len == 3)
 				rev_sort_3(&stack_b, &stack_b->next, 1);
 			chunk = 999;
 		}
-		//ft_printf("segcheck\n");
-		//print_stack(stack_b);
+		// ft_printf("segcheck\n");
+		// print_stack(stack_b);
 		// ft_printf("**_______ STACK A IS: _______**\n");
 		// print_stack(stack_a);
 		// ft_printf("**_______ END OF STACK A _______**\n");
@@ -68,13 +74,16 @@ t_list	*big_sort_initializer(t_list *stack_a, t_list *stack_b)
 t_list *preprocess(t_list **stack_a, t_list **stack_b, int limit, int stack_len, int chunk)
 {
 	int		push_back;
+	int		flag;
 	t_list *temp;
 
 	temp = *stack_a;
 	push_back = 0;
+	flag = 0;
+	// ft_printf("limit is: %i\n", limit);
 	if (stack_len > 3)
 	{
-		while (push_back < (stack_len / 2) && stack_len >= 4) // && stack_len > 4
+		while (push_back <= (stack_len / 2) && stack_len >= 4) // && stack_len > 4
 		{
 			if ((*stack_a)->data <= limit)
 			{
@@ -82,11 +91,24 @@ t_list *preprocess(t_list **stack_a, t_list **stack_b, int limit, int stack_len,
 				push(stack_a, stack_b, "pb");
 				push_back++;
 			}
-			else
-			{
+			else if ((*stack_a)->data > limit) //&& flag == 1)
 				rotate(stack_a, "ra");
+			else // ((*stack_a)->data > limit)
+			{
+				while (temp->next != NULL)
+					temp = temp->next;
+				if (temp->data <= limit)
+				{
+					rev_rotate(stack_a, "rra");
+					//flag = 1;
+				}
 			}
-		}
+			// ft_printf("_____ TEST TEST TEST _____\n");
+			stack_len = list_length(*stack_a);
+		// 	ft_printf("stack_len is %i\n", stack_len);
+		// 	ft_printf("limit is %i\n", limit);
+		// 	ft_printf("push_back is %i\n", push_back);
+		// }
 	}
 	if (stack_len <= 3)
 	{
@@ -112,6 +134,7 @@ t_list *preprocess(t_list **stack_a, t_list **stack_b, int limit, int stack_len,
 	//ft_printf("loopcheck\n");
 	//print_stack(*stack_a);
 	//ft_printf("cleared process??\n");
+	}
 	return(temp);
 }
 
