@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 10:45:54 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/03/30 13:54:19 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/03/30 17:30:26 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,17 @@ t_list *positions_for_radix(t_list **stack)
 	len = list_length(*stack);
 	bubblesort(stack, len, "order");
 	return (*stack);
+}
+
+void	do_operations(int len, t_list **stack_b, int chunk)
+{
+	if ((len == 2 || len == 3) && chunk != 999)
+		{
+			if (len == 2 && (*stack_b)->data < (*stack_b)->next->data)
+			{
+				swap(stack_b, "sb");
+			}
+			else if (len == 3)
+				rev_sort_3(stack_b, &(*stack_b)->next, 1);
+		}
 }
