@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 11:56:07 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/03/29 15:08:50 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/03/30 13:51:38 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ t_list	*fill_stack(t_list *stack, char *argument)
 	char **array;
 	int	i;
 	int	flag;
-	//int test = 0;
 
 
 	i = 0;
@@ -74,15 +73,8 @@ t_list	*fill_stack(t_list *stack, char *argument)
 		while (array[i] != NULL)
 		{
 			data = ft_atoi(array[i]);
-		//ft_printf("data : %i\n", data);
-		//ft_printf("flag : %i\n,", flag);
-		//if (ft_strcmp(array[i], "-1") != 0)
 			flag = check_for_range(data, array[i], flag);
-		//test = ft_strcmp(array[i], "-1");
-		//ft_printf("array %s\n", array[i]);
-		//ft_printf("test is %i\n", test);
 			flag = check_for_duplicates(data, stack, flag);
-		//ft_printf("flag : %i\n", flag);
 			if (flag == 1)
 			{
 				exit_and_free(array, stack);
@@ -109,7 +101,6 @@ void	print_stack(t_list *head)
 	while (temp)
 	{
 		ft_printf("%i\n", temp->data);
-		ft_printf("chunk: %i\n", temp->chunk);
 		temp = temp->next;
 	}
 }
@@ -129,14 +120,10 @@ int	main(int argc, char **argv)
 		exit (1);
 	while (i < argc)
 	{
-		//ft_printf("we get here??\n");
 		stack_a = fill_stack(stack_a, argv[i]);
 		i++;
 	}
-	//ft_printf("we get here??\n");
-	//print_stack(stack_a);
 	stack_a = sort(stack_a, stack_b);
-	//print_stack(stack_a);
 	free_stack(&stack_a);
 	return (0);
 }

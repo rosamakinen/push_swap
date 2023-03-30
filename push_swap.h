@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 11:26:21 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/03/29 16:02:19 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/03/30 11:28:11 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,10 @@ t_list	*mini_sort_b(t_list **stack, int chunk_flag);
 t_list	*rev_sort_3(t_list **stack_a, t_list **second, int check);
 t_list	*big_sort_initializer(t_list *stack_a, t_list *stack_b);
 t_list	*sort_3(t_list **stack_a, t_list **second, int check);
-t_list *preprocess(t_list **stack_a, t_list **stack_b, int limit, int stack_len, int chunk);
+t_list	*preprocess(t_list **stack_a, t_list **stack_b, int limit, int stack_len, int chunk);
 t_list	*rotate_and_add(t_list **stack_a, t_list **stack_b, int target_position);
+t_list	*deal_with_it(t_list **stack_a, t_list **stack_b);
+t_list *positions_for_radix(t_list **stack);
 //t_list	*process_a(t_list **stack_a, t_list **stack_b, int chunk);
 
 int	check_for_nonint(char *argument, int flag);
@@ -49,7 +51,7 @@ int	check_for_range(int data, char *str, int flag);
 int	list_length(t_list *stack);
 int	if_sorted(t_list *stack);
 int	if_rev_sorted(t_list *stack);
-int	bubblesort(t_list *stack, int len);
+int	bubblesort(t_list **stack, int len, char *str);
 int	get_idx(int len); /// REMOVE??
 int	chunk_length(t_list *stack, int chunk);
 int	find_end_position(t_list **stack_a, t_list **top_at_b, int target_value);

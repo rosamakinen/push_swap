@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 09:12:01 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/03/29 16:00:27 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/03/30 13:54:01 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,13 @@ t_list	*big_sort_initializer(t_list *stack_a, t_list *stack_b)
 	int limit;
 	int chunk;
 	int target_position;
-	//int test;
 
 	if (!stack_a)
 		return (0);
 	stack_b = 0;
 	len = list_length(stack_a);
 	chunk = 1;
-	limit = bubblesort(stack_a, len);
-	//test = len;
+	limit = bubblesort(&stack_a, len-1, "limit");
 	target_position = 0;
 	preprocess(&stack_a, &stack_b, limit, len, chunk);
 	// ft_printf("\n");
@@ -80,10 +78,9 @@ t_list *preprocess(t_list **stack_a, t_list **stack_b, int limit, int stack_len,
 	temp = *stack_a;
 	push_back = 0;
 	flag = 0;
-	// ft_printf("limit is: %i\n", limit);
 	if (stack_len > 3)
 	{
-		while (push_back <= (stack_len / 2) && stack_len >= 4) // && stack_len > 4
+		while (push_back <= (stack_len / 2) && stack_len >= 4)
 		{
 			if ((*stack_a)->data <= limit)
 			{
@@ -91,49 +88,30 @@ t_list *preprocess(t_list **stack_a, t_list **stack_b, int limit, int stack_len,
 				push(stack_a, stack_b, "pb");
 				push_back++;
 			}
-			else if ((*stack_a)->data > limit) //&& flag == 1)
+			else if ((*stack_a)->data > limit)
 				rotate(stack_a, "ra");
-			else // ((*stack_a)->data > limit)
+			else
 			{
 				while (temp->next != NULL)
 					temp = temp->next;
 				if (temp->data <= limit)
 				{
 					rev_rotate(stack_a, "rra");
-					//flag = 1;
 				}
 			}
-			// ft_printf("_____ TEST TEST TEST _____\n");
 			stack_len = list_length(*stack_a);
-		// 	ft_printf("stack_len is %i\n", stack_len);
-		// 	ft_printf("limit is %i\n", limit);
-		// 	ft_printf("push_back is %i\n", push_back);
-		// }
 	}
 	if (stack_len <= 3)
 	{
 			mini_sort(stack_a);
 	}
-	// ft_printf("_____ STACK A IS LIKE THIS: _____\n");
-	// print_stack(*stack_a);
-	// ft_printf("\n");
-	// ft_printf("_____ STACK B IS LIKE THIS: _____\n");
-	// print_stack(*stack_b);
-	// ft_printf("\n");
 	if (stack_len > 3)
 	{
-		// ft_printf("\n");
-		// ft_printf("___ NEW SORTCYCLE FOR A ___\n");
-		// ft_printf("\n");
 		chunk++;
-		// ft_printf("___ NEW CHUNK DIVISION FOR A, chunk %i ___\n", chunk);
 		stack_len = list_length(*stack_a);
-		limit = bubblesort(*stack_a, stack_len);
+		limit = bubblesort(stack_a, stack_len, "limit");
 		preprocess(stack_a, stack_b, limit, stack_len, chunk);
 	}
-	//ft_printf("loopcheck\n");
-	//print_stack(*stack_a);
-	//ft_printf("cleared process??\n");
 	}
 	return(temp);
 }
@@ -148,20 +126,15 @@ int	find_end_position(t_list **stack_a, t_list **top_at_b, int target_value)
 	temp_a = (*stack_a);
 	from_b = (*top_at_b)->data;
 	stack_reposition(stack_a);
-	//ft_printf("before target pos is: %i\n", target_pos);
 	while (temp_a)
 	{
 		if (temp_a->data > from_b && temp_a->data < target_value)
 		{
 			target_pos = temp_a->position;
 			target_value = temp_a->data;
-			//ft_printf("within loop target pos is %i\n", temp_a->position);
 		}
 		temp_a = temp_a->next;
 	}
-	// ft_printf("target pos is: %i\n", target_pos);
-	// ft_printf("target value is: %i\n", target_value);
-	// ft_printf("value at the top og b is: %i\n", from_b);
 	return (target_pos);
 }
 
@@ -170,8 +143,6 @@ t_list	*rotate_and_add(t_list **stack_a, t_list **stack_b, int target_position)
 	int mid;
 
 	mid = (list_length(*stack_a) / 2);
-	//ft_printf("target position is: %i\n", target_position);
-	// ft_printf("mid value is: %i\n", mid);
 	if (mid > target_position)
 	{
 		while ((*stack_a)->position != target_position)
@@ -182,15 +153,10 @@ t_list	*rotate_and_add(t_list **stack_a, t_list **stack_b, int target_position)
 		while ((*stack_a)->position != target_position)
 			rev_rotate(stack_a, "rra");
 	}
-	// ft_printf("stack_a position is: %i\n", (*stack_a)->position);
-	// ft_printf("target position is:%i\n", target_position);
 	if ((*stack_a)->position == target_position)
 	{
 		push(stack_b, stack_a, "pa");
 	}
-		// ft_printf("**_______ AFTER R&A STACK A IS: _______**\n");
-		// print_stack(*stack_a);
-		// ft_printf("**_______ END OF STACK A _______**\n");
 	return(*stack_a);
 }
 
@@ -215,8 +181,6 @@ int	reorder_a(t_list **stack_a)
 		}
 		temp = temp->next;
 	}
-	//ft_printf("lowest value is: %i\n", lowest_value);
-//	ft_printf("lowest position is: %i\n", lowest_position);
 	if (mid > lowest_position)
 	{
 		while ((*stack_a)->data != lowest_value)
@@ -229,45 +193,26 @@ int	reorder_a(t_list **stack_a)
 	}
 	return (lowest_value);
 }
-// int	get_idx(int len)
-// {
-// 	int idx;
-// 	ft_printf("get indexx??\n");
-// 	idx = 0;
-// 	if (len == 4)
-// 		idx = 3;
-// 	if (len == 5)
-// 		idx = 3;
-// 	else if (len < 11)
-// 		idx = (len / 2);
-// 	else if (len < 101)
-// 		idx = (len / 4);
-// 	else if (len < 501)
-// 		idx = (len / 10);
-// 	ft_printf("%i\n", idx);
-// 	return(idx - 1);
-// }
 
-int	bubblesort(t_list *stack, int len)
+int	bubblesort(t_list **stack, int len, char *str)
 {
-	int array[len];
-	int i;
-	int j;
-	int temp;
-	//int idx;
+	int		array[len];
+	int		i;
+	int		j;
+	int		temp;
+	t_list		*temp_s;
 
 	i = 0;
-	while(stack)
+	temp_s = *stack;
+	while(temp_s)
 	{
-		array[i] = stack->data;
-		stack = stack->next;
+		array[i] = temp_s->data;
+		temp_s = temp_s->next;
 		i++;
 	}
 	j = 0;
-	//ft_printf("*** list len is : %i ***\n", len);
 	while (j < len)
 	{
-		//ft_printf("array %i is %i\n", j, array[j]);
 		j++;
 	}
 	j = 0;
@@ -279,24 +224,29 @@ int	bubblesort(t_list *stack, int len)
 			if(array[i] > array[i+1])
 			{
 				ft_swap(&array[i], &array[i+1]);
-				//ft_printf("we swapped %i + %i\n", array[i], array[i+1]);
 			}
 			i++;
 		}
 		j++;
 	}
-	//idx = len / 2;
-	//ft_printf("index is at %i as %i\n", idx, array[idx]);
-	// i = 0;
-	//ft_printf("\n");
-	// while(i < len)
-	// {
-	// 	ft_printf("sorted array: %i\n", array[i]);
-	// 	i++;
-	// }
-	i = len / 2;
+	temp_s = *stack;
+	if (ft_strcmp(str, "limit") == 0)
+		i = len / 2;
+	else if (ft_strcmp(str, "order") == 0)
+	{
+		j = 0;
+		while (array[j])
+		{
+			while (temp_s && j < len)
+			{
+				if (array[j] == temp_s->data)
+					temp_s->position = j;
+				temp_s = temp_s->next;
+			}
+			temp_s = *stack;
+			j++;
+		}
+	}
 	temp = array[i];
-	// ft_printf("\n");
-	// ft_printf("*** sort limit for quicksort is %i ***\n", array[i]);
 	return (temp);
 }
