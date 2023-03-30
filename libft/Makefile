@@ -6,7 +6,7 @@
 #    By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/31 15:09:16 by rmakinen          #+#    #+#              #
-#    Updated: 2023/01/16 11:11:11 by rmakinen         ###   ########.fr        #
+#    Updated: 2023/03/27 10:39:33 by rmakinen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ CC = cc
 AR = ar rcs
 
 CONVERT_DIR = convert/
-CONVERT = ft_tolower ft_toupper ft_itoa ft_atoi
+CONVERT = ft_tolower ft_toupper ft_itoa ft_atoi ft_swap
 
 CHECK_DIR = check/
 CHECK =ft_isalnum ft_isalpha ft_isascii ft_isdigit ft_isprint
@@ -34,7 +34,7 @@ PUT = ft_putchar ft_putstr ft_putnbr ft_putchar_fd ft_putstr_fd ft_putnbr_fd ft_
 STR_DIR = string/
 STRING = ft_strmapi ft_striteri ft_strchr ft_strlen ft_strlcpy ft_strncmp \
 		ft_strrchr ft_substr ft_strjoin ft_strtrim ft_strchr ft_split \
-		ft_strnstr ft_strlcat ft_strdup
+		ft_strnstr ft_strlcat ft_strdup ft_strcmp
 
 GN_DIR = get_next/
 GET_NEXT = get_next_line get_next_line_utils
