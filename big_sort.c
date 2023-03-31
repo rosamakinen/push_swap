@@ -42,24 +42,22 @@ t_list	*big_sort_initializer(t_list *stack_a, t_list *stack_b)
 
 t_list	*preprocess(t_list **stack_a, t_list **stack_b,	int limit, int len)
 {
-	int		push_back;
-	int		flag;
+	int		pushed;
 	t_list	*temp;
 
 	temp = *stack_a;
-	push_back = 0;
-	flag = 0;
+	pushed = 0;
 
 	if (len > 3)
 	{
-		while (push_back <= (len / 2) && len >= 4)
+		while (pushed <= (len / 2) && len >= 4)
 		{
-			if ((*stack_a)->data <= limit)
+			if ((*stack_a)->data < limit)
 			{
 				push(stack_a, stack_b, "pb");
-				push_back++;
+				pushed++;
 			}
-			else if ((*stack_a)->data > limit)
+			else if ((*stack_a)->data >= limit)
 				rotate(stack_a, "ra");
 			else
 			{
@@ -69,19 +67,47 @@ t_list	*preprocess(t_list **stack_a, t_list **stack_b,	int limit, int len)
 					rev_rotate(stack_a, "rra");
 			}
 			len = list_length(*stack_a);
-	}
-		if (len <= 3)
-				mini_sort(stack_a);
+		}
+		//search_from_top(stack_a, len);
+		// if (len <= 3)
+		// 	mini_sort(stack_a);
 		if (len > 3)
 		{
 			len = list_length(*stack_a);
 			limit = bubblesort(stack_a, len, "limit");
 			preprocess(stack_a, stack_b, limit, len);
 		}
+		if (len <= 3)
+			mini_sort(stack_a);
 	}
 	return(temp);
 }
-
+// void	search_from_top(t_list **stack_a, int len)
+// {
+// 	int push_back;
+// 	t_list *temp;
+	
+// 	push_back = 0;
+// 	temp = *stack;
+// 	while (push_back <= (len / 2) && len >= 4)
+// 		{
+// 			if ((*stack_a)->data <= limit)
+// 			{
+// 				push(stack_a, stack_b, "pb");
+// 				push_back++;
+// 			}
+// 			else if ((*stack_a)->data > limit)
+// 				rotate(stack_a, "ra");
+// 			else
+// 			{
+// 				while (temp->next != NULL)
+// 					temp = temp->next;
+// 				if (temp->data <= limit)
+// 					rev_rotate(stack_a, "rra");
+// 			}
+// 			len = list_length(*stack_a);
+// 		}
+// }
 int	find_end_position(t_list **stack_a, t_list **top_at_b, int target_value)
 {
 	t_list	*temp_a;
@@ -109,57 +135,51 @@ t_list	*rotate_and_add(t_list **stack_a, t_list **stack_b, int target_position)
 	int mid;
 
 	mid = (list_length(*stack_a) / 2);
-	if (mid > target_position)
-	{
+	if (mid >= target_position)
 		while ((*stack_a)->position != target_position)
 			rotate(stack_a, "ra");
-	}
-	if (mid <= target_position)
-	{
+	if (mid < target_position)
 		while ((*stack_a)->position != target_position)
 			rev_rotate(stack_a, "rra");
-	}
 	if ((*stack_a)->position == target_position)
-	{
 		push(stack_b, stack_a, "pa");
-	}
 	return(*stack_a);
 }
-
-// too long
 
 int	reorder_a(t_list **stack_a)
 {
 	int	lowest_value;
 	int	lowest_position;
 	int mid;
-	t_list	*temp;
 
-	lowest_value = 2147483647;
 	lowest_position = 0;
 	mid = (list_length(*stack_a) / 2);
-	temp = (*stack_a);
 	stack_reposition(stack_a);
-	while(temp)
-	{
-		if (temp->data < lowest_value)
-		{
-			lowest_value = temp->data;
-			lowest_position = temp->position;
-		}
-		temp = temp->next;
-	}
-	if (mid > lowest_position)
-	{
+	lowest_value = bubblesort(stack_a, list_length(*stack_a), "smallest");
+	lowest_position = find_lowest_position(stack_a, lowest_value);
+	if (mid < lowest_position)
 		while ((*stack_a)->data != lowest_value)
 			rotate(stack_a, "ra");
-	}
-	if (mid <= lowest_position)
-	{
+	if (mid >= lowest_position)
 		while ((*stack_a)->data != lowest_value)
 			rev_rotate(stack_a, "rra");
-	}
 	return (lowest_value);
+}
+
+int	find_lowest_position(t_list **stack_a, int lowest_value)
+{
+	t_list	*temp;
+	int		lowest_position;
+
+	lowest_position = 0;
+	temp = *stack_a;
+	while(temp)
+	{
+		if (temp->data == lowest_value)
+			temp->position = lowest_position;
+		temp = temp->next;
+	}
+	return (lowest_position);
 }
 
 // too long
@@ -169,7 +189,6 @@ int	bubblesort(t_list **stack, int len, char *str)
 	int		array[len];
 	int		i;
 	int		j;
-	int		temp;
 	t_list	*temp_s;
 
 	i = 0;
@@ -196,8 +215,19 @@ int	bubblesort(t_list **stack, int len, char *str)
 	if (ft_strcmp(str, "limit") == 0)
 		i = len / 2;
 	else if (ft_strcmp(str, "order") == 0)
+		positions_for_radix(array, len, stack);
+	else if (ft_strcmp(str, "smallest") == 0)
+		i = 0;
+	return (array[i]);
+}
+
+void	positions_for_radix(int *array, int len, t_list **stack)
 	{
+		int j;
+		t_list	*temp_s;
+
 		j = 0;
+		temp_s = *stack;
 		while (array[j])
 		{
 			while (temp_s && j < len)
@@ -210,6 +240,3 @@ int	bubblesort(t_list **stack, int len, char *str)
 			j++;
 		}
 	}
-	temp = array[i];
-	return (temp);
-}

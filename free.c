@@ -27,11 +27,9 @@ void	free_stack(t_list **stack)
 
 void	free_array(char ***array)
 {
-	int		i;
 	char	**temp;
 
 	temp = *array;
-	i = 0;
 	while (*temp)
 	{
 		free(*temp);

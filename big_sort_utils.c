@@ -21,7 +21,7 @@ t_list	*deal_with_it(t_list **stack_a, t_list **stack_b)
 
 	bit = 0;
 	len = (list_length(*stack_a));
-	positions_for_radix(stack_a);
+	get_pos_radix(stack_a);
 	while (bit < 32)
 	{
 		temp = *stack_a;
@@ -36,9 +36,7 @@ t_list	*deal_with_it(t_list **stack_a, t_list **stack_b)
 			j++;
 		}
 		while (*stack_b)
-		{
 			push(stack_b, stack_a, "pa");
-		}
 		bit++;
 		if (if_sorted(*stack_a) == 0)
 		{
@@ -49,7 +47,7 @@ t_list	*deal_with_it(t_list **stack_a, t_list **stack_b)
 	return (*stack_a);
 }
 
-t_list *positions_for_radix(t_list **stack)
+t_list *get_pos_radix(t_list **stack)
 {
 	int		len;
 
@@ -58,15 +56,13 @@ t_list *positions_for_radix(t_list **stack)
 	return (*stack);
 }
 
-void	do_operations(int len, t_list **stack_b, int chunk)
+void	do_operations(int len, t_list **stack_b, int flag)
 {
-	if ((len == 2 || len == 3) && chunk != 999)
-		{
-			if (len == 2 && (*stack_b)->data < (*stack_b)->next->data)
-			{
-				swap(stack_b, "sb");
-			}
-			else if (len == 3)
-				rev_sort_3(stack_b, &(*stack_b)->next, 1);
+	if ((len == 2 || len == 3) && flag != 1)
+	{
+		if (len == 2 && (*stack_b)->data < (*stack_b)->next->data)
+			swap(stack_b, "sb");
+		else if (len == 3)
+			rev_sort_3(stack_b, &(*stack_b)->next, 1);
 		}
 }
