@@ -6,7 +6,7 @@
 #    By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/31 15:09:16 by rmakinen          #+#    #+#              #
-#    Updated: 2023/03/27 10:39:33 by rmakinen         ###   ########.fr        #
+#    Updated: 2023/04/01 11:35:18 by rmakinen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,9 +36,6 @@ STRING = ft_strmapi ft_striteri ft_strchr ft_strlen ft_strlcpy ft_strncmp \
 		ft_strrchr ft_substr ft_strjoin ft_strtrim ft_strchr ft_split \
 		ft_strnstr ft_strlcat ft_strdup ft_strcmp
 
-GN_DIR = get_next/
-GET_NEXT = get_next_line get_next_line_utils
-
 PRINT_DIR = print/
 PRINT = ft_printf print_percentage print_pointer print_putchar print_puthexhi \
 		print_puthexlow print_putnum print_putstring print_unsigned
@@ -48,7 +45,6 @@ SRC_FILE+=$(addprefix $(CHECK_DIR), $(CHECK))
 SRC_FILE+=$(addprefix $(MEM_DIR), $(MEM))
 SRC_FILE+=$(addprefix $(PUT_DIR), $(PUT))
 SRC_FILE+=$(addprefix $(STR_DIR), $(STRING))
-SRC_FILE+=$(addprefix $(GN_DIR), $(GET_NEXT))
 SRC_FILE+=$(addprefix $(PRINT_DIR), $(PRINT))
 
 SRC = $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILE)))
@@ -72,7 +68,6 @@ $(OBJECTS):
 	@mkdir -p $(OBJ_DIR)$(MEM_DIR)
 	@mkdir -p $(OBJ_DIR)$(PUT_DIR)
 	@mkdir -p $(OBJ_DIR)$(STR_DIR)
-	@mkdir -p $(OBJ_DIR)$(GN_DIR)
 	@mkdir -p $(OBJ_DIR)$(PRINT_DIR)
 
 $(OBJ_DIR)%.o : $(SRC_DIR)%.c | $(OBJECTS)
