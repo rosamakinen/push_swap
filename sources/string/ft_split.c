@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 07:44:15 by rmakinen          #+#    #+#             */
-/*   Updated: 2022/11/16 13:44:59 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/03/27 10:36:57 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,9 @@ char	**ft_split(char const *s, char c)
 {
 	size_t	count;
 	char	**s_array;
-	char	**temp;
+	int		i;
 
+	i = 0;
 	if (!s)
 		return (0);
 	count = word_count(s, c);
@@ -106,12 +107,5 @@ char	**ft_split(char const *s, char c)
 	if (!(s_array))
 		return (NULL);
 	s_array = add_word(s_array, s, c, count);
-	temp = s_array;
-	while (count > 0)
-	{
-		free(s_array[count]);
-		count--;
-	}
-	free(s_array);
-	return (temp);
+	return (s_array);
 }
