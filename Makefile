@@ -6,7 +6,7 @@
 #    By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/16 11:13:01 by rmakinen          #+#    #+#              #
-#    Updated: 2023/04/01 09:40:53 by rmakinen         ###   ########.fr        #
+#    Updated: 2023/04/03 14:19:13 by rmakinen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,8 @@ FILES = push_swap checks swap sort rotate push mini_sort mini_sort_b big_sort \
 SRC = $(addprefix $(SRC_DIR),$(addsuffix .c, $(FILES)))
 OBJ = $(addprefix $(SRC_DIR),$(addsuffix .o, $(FILES)))
 FLAGS = -Wall -Wextra -Werror -g
+
+##-fsanitize=address -static-libsan
 
 all: $(NAME)
 

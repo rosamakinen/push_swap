@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 08:18:49 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/04/01 12:26:10 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/04/03 14:19:49 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,6 @@ t_list	*sort(t_list *stack_a, t_list *stack_b)
 	if (len > 3 && len <= 150)
 		head = big_sort_initializer(stack_a, stack_b);
 	if (len > 150)
-		head = deal_with_it(&stack_a, &stack_b);
+		deal_with_it(&stack_a, &stack_b);
 	return (head);
 }

@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 11:26:21 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/04/01 15:36:19 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/04/03 15:53:58 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,9 @@ int		chunk_length(t_list *stack, int chunk);
 int		find_end_position(t_list **stack_a, t_list **top_at_b, int target);
 int		reorder_a(t_list **stack_a);
 int		find_lowest_position(t_list **stack_a, int lowest_value);
-int		*do_bubble_swap(int *array, int len);
+int		arraycpy(t_list **stack, int *array);
 
+void	do_bubble_swap(int *array, int len);
 void	pushback(t_list **stack_b, t_list **stack_a);
 void	is_rev_sorted(t_list *stack_a, t_list *stack_b);
 void	positions_for_radix(int *array, int len, t_list **stack);

@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 09:36:09 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/04/03 09:20:42 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/04/03 15:56:04 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,36 +16,44 @@ int	bubblesort(t_list **stack, int len, char *str)
 {
 	t_list	*temp_s;
 	int		*array;
-	int		*temp;
 	int		i;
+	int		ret;
 
 	i = 0;
+	ret = 0;
 	temp_s = *stack;
-	temp = NULL;
-	array = (int*)calloc(len, sizeof(int));
+	array = (int *) malloc(sizeof(int) * (len + 1));
 	if (array == NULL)
-	{
-		free(array);
 		return (0);
-	}
-	while (temp_s)
-	{
-		array[i] = temp_s->data;
-		temp_s = temp_s->next;
-		i++;
-	}
-	temp = do_bubble_swap(array, len);
+	array = arraycpy(stack, array);
+	do_bubble_swap(array, len);
 	if (ft_strcmp(str, "limit") == 0)
-		i = len / 2;
+		ret = array[len / 2];
 	else if (ft_strcmp(str, "order") == 0)
 		positions_for_radix(array, len, stack);
 	else if (ft_strcmp(str, "smallest") == 0)
-		i = 0;
+		ret = array[0];
 	free(array);
-	return (temp[i]);
+	return (ret);
 }
 
-int	*do_bubble_swap(int *array, int len)
+int arraycpy(t_list **stack, int *array)
+{
+	t_list	*temp;
+	int i;
+
+	i = 0;
+	temp = stack;
+	while (temp)
+	{
+		array[i] = temp->data;
+		temp = temp->next;
+		i++;
+	}
+	return (0);
+}
+
+void	do_bubble_swap(int *array, int len)
 {
 	int	j;
 	int	i;
@@ -62,7 +70,6 @@ int	*do_bubble_swap(int *array, int len)
 		}
 		j++;
 	}
-	return (array);
 }
 
 t_list	*get_pos_radix(t_list **stack)
