@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 11:25:11 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/03/30 13:57:44 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/04/01 09:33:24 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	swap(t_list **head, char *print)
 	temp2 = temp->next;
 	if (temp->next)
 	{
-
 		*head = (*head)->next;
 		temp->next = temp2->next;
 		temp2->next = temp;
@@ -31,7 +30,7 @@ void	swap(t_list **head, char *print)
 	ft_printf("%s\n", print);
 }
 
-void swap_both(t_list *stack_a, t_list *stack_b)
+void	swap_both(t_list *stack_a, t_list *stack_b)
 {
 	if (stack_a && stack_b)
 	{

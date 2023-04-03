@@ -6,18 +6,18 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 11:26:21 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/03/30 17:23:48 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/04/01 15:36:19 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-#include "./libft/includes/libft.h"
-#include "./libft/includes/ft_printf.h"
-#include "./libft/includes/get_next_line.h"
-#include <stdlib.h> //for malloc & free etc
-#include <unistd.h> //for read & write
+# include "./libft/includes/libft.h"
+# include "./libft/includes/ft_printf.h"
+# include "./libft/includes/get_next_line.h"
+# include <stdlib.h> //for malloc & free etc
+# include <unistd.h> //for read & write
 
 typedef struct s_list
 {
@@ -38,27 +38,31 @@ t_list	*rev_sort_3(t_list **stack_a, t_list **second, int check);
 t_list	*big_sort_initializer(t_list *stack_a, t_list *stack_b);
 t_list	*sort_3(t_list **stack_a, t_list **second, int check);
 t_list	*preprocess(t_list **stack_a, t_list **stack_b, int limit, int len);
-t_list	*rotate_and_add(t_list **stack_a, t_list **stack_b, int target_position);
+t_list	*rotate_and_add(t_list **stack_a, t_list **stack_b, int target_pos);
 t_list	*deal_with_it(t_list **stack_a, t_list **stack_b);
 t_list	*get_pos_radix(t_list **stack);
+t_list	*search_from_top(t_list **s_a, t_list **s_b, int limit, int len);
+t_list	*shift(t_list **stack_a, t_list **stack_b, int bit, int len);
 
-int	check_for_nonint(char *argument, int flag);
-int	check_for_duplicates(int data, t_list *stack, int flag);
-int	check_for_range(int data, char *str, int flag);
-int	list_length(t_list *stack);
-int	if_sorted(t_list *stack);
-int	if_rev_sorted(t_list *stack);
-int	bubblesort(t_list **stack, int len, char *str);
-int	chunk_length(t_list *stack, int chunk);
-int	find_end_position(t_list **stack_a, t_list **top_at_b, int target_value);
-int	reorder_a(t_list **stack_a);
-int	find_lowest_position(t_list **stack_a, int lowest_value);
+int		check_for_nonint(char *argument, int flag);
+int		check_for_duplicates(int data, t_list *stack, int flag);
+int		check_for_range(int data, char *str, int flag);
+int		list_length(t_list *stack);
+int		if_sorted(t_list *stack);
+int		if_rev_sorted(t_list *stack);
+int		bubblesort(t_list **stack, int len, char *str);
+int		chunk_length(t_list *stack, int chunk);
+int		find_end_position(t_list **stack_a, t_list **top_at_b, int target);
+int		reorder_a(t_list **stack_a);
+int		find_lowest_position(t_list **stack_a, int lowest_value);
+int		*do_bubble_swap(int *array, int len);
 
-void	search_from_top(t_list **stack_a, t_list **stack_b, int len, int limit);
+void	pushback(t_list **stack_b, t_list **stack_a);
+void	is_rev_sorted(t_list *stack_a, t_list *stack_b);
 void	positions_for_radix(int *array, int len, t_list **stack);
 void	setting_(int array, int len, t_list **stack);
 void	process_a(int push_back, int limit, t_list **stack_a, t_list **stack_b);
-void	do_operations(int len, t_list **stack_b, int flag);
+void	do_operations(int len, t_list **stack_b);
 void	print_stack(t_list *head); // PRINT STACK!!! REMOVE??
 void	stack_reposition(t_list **head);
 void	swap(t_list **head, char *print);

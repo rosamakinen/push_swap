@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 10:01:43 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/03/29 13:55:25 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/04/01 07:19:09 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,12 @@ int	check_for_nonint(char *argument, int flag)
 	i = 0;
 	while (argument[i] != '\0')
 	{
-		if ((argument[i] >= 48 && argument[i] <= 57) || argument[i] == ' ' || argument[i] == '\t')
+		if ((argument[i] >= 48 && argument[i] <= 57) \
+		|| argument[i] == ' ' || argument[i] == '\t')
 			flag = 0;
 		i++;
 	}
-	return(flag);
+	return (flag);
 }
 
 int	check_for_range(int data, char *str, int flag)
@@ -58,8 +59,8 @@ int	check_for_range(int data, char *str, int flag)
 
 int	list_length(t_list *stack)
 {
-	int	len;
-	t_list *temp;
+	int		len;
+	t_list	*temp;
 
 	len = 0;
 	temp = stack;
@@ -74,11 +75,11 @@ int	list_length(t_list *stack)
 void	stack_reposition(t_list **head)
 {
 	t_list	*temp;
-	int	pos;
+	int		pos;
 
 	temp = *head;
 	pos = 1;
-	while(temp)
+	while (temp)
 	{
 		temp->position = pos;
 		temp = temp->next;
