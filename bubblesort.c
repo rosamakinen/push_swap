@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 09:36:09 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/04/03 15:56:04 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/04/04 15:04:37 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	bubblesort(t_list **stack, int len, char *str)
 	array = (int *) malloc(sizeof(int) * (len + 1));
 	if (array == NULL)
 		return (0);
-	array = arraycpy(stack, array);
+	arraycpy(stack, array);
 	do_bubble_swap(array, len);
 	if (ft_strcmp(str, "limit") == 0)
 		ret = array[len / 2];
@@ -37,13 +37,13 @@ int	bubblesort(t_list **stack, int len, char *str)
 	return (ret);
 }
 
-int arraycpy(t_list **stack, int *array)
+int	arraycpy(t_list **stack, int *array)
 {
 	t_list	*temp;
-	int i;
+	int		i;
 
 	i = 0;
-	temp = stack;
+	temp = *stack;
 	while (temp)
 	{
 		array[i] = temp->data;

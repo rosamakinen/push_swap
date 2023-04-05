@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 08:18:49 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/04/03 14:19:49 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/04/04 11:52:25 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ t_list	*sort(t_list *stack_a, t_list *stack_b)
 	int		check;
 	t_list	*head;
 
-	stack_b = NULL;
 	head = NULL;
 	len = list_length(stack_a);
 	if (len == 1)

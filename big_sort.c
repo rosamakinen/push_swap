@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 09:12:01 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/04/03 14:09:23 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/04/04 11:32:36 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,8 @@ int	find_end_position(t_list **stack_a, t_list **top_at_b, int target)
 			target_pos = temp_a->position;
 			target = temp_a->data;
 		}
+		if (target == 2147483647)
+			target_pos = temp_a->position;
 		temp_a = temp_a->next;
 	}
 	return (target_pos);

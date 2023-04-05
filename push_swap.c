@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 11:56:07 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/04/03 15:25:52 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/04/04 15:03:17 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,13 @@ t_list	*fill_stack(t_list *stack, char *argument)
 	i = 0;
 	flag = 0;
 	array = ft_split(argument, ' ');
-	flag = check_for_nonint(argument, flag);
-	while (array[i] != NULL)
+	if (array[i] == NULL || !array)
+		exit(1);
+	while (array[i])
 	{
+		flag = check_for_nonint(array[i], flag);
 		data = ft_atoi(array[i]);
-		flag = check_for_range(data, array[i], flag);
-		flag = check_for_duplicates(data, stack, flag);
+		flag = check_input(stack, array[i], data, flag);
 		if (flag == 1)
 			exit_and_free(array, stack);
 		else if (!stack && flag == 0)
@@ -83,16 +84,11 @@ t_list	*fill_stack(t_list *stack, char *argument)
 	return (stack);
 }
 
-void	print_stack(t_list *head)
+int	check_input(t_list *stack, char *array, int data, int flag)
 {
-	t_list	*temp;
-
-	temp = head;
-	while (temp)
-	{
-		ft_printf("%i\n", temp->data);
-		temp = temp->next;
-	}
+	flag = check_for_range(data, array, flag);
+	flag = check_for_duplicates(data, stack, flag);
+	return (flag);
 }
 
 int	main(int argc, char **argv)
@@ -104,13 +100,15 @@ int	main(int argc, char **argv)
 	i = 1;
 	stack_a = NULL;
 	stack_b = NULL;
-	if (argc < 2)
-		exit (1);
+	if (argc < 2 || ft_strcmp(argv[i], "") == 0)
+		exit (0);
 	while (i < argc)
 	{
 		stack_a = fill_stack(stack_a, argv[i]);
 		i++;
 	}
+	if (!stack_a)
+		exit (1);
 	stack_a = sort(stack_a, stack_b);
 	free_stack(&stack_a);
 	return (0);

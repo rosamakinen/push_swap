@@ -6,7 +6,7 @@
 /*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 11:26:21 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/04/03 15:53:58 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/04/04 15:01:42 by rmakinen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,8 @@
 
 # include "./libft/includes/libft.h"
 # include "./libft/includes/ft_printf.h"
-# include "./libft/includes/get_next_line.h"
-# include <stdlib.h> //for malloc & free etc
-# include <unistd.h> //for read & write
+# include <stdlib.h>
+# include <unistd.h>
 
 typedef struct s_list
 {
@@ -44,6 +43,7 @@ t_list	*get_pos_radix(t_list **stack);
 t_list	*search_from_top(t_list **s_a, t_list **s_b, int limit, int len);
 t_list	*shift(t_list **stack_a, t_list **stack_b, int bit, int len);
 
+int		check_input(t_list *stack, char *array, int data, int flag);
 int		check_for_nonint(char *argument, int flag);
 int		check_for_duplicates(int data, t_list *stack, int flag);
 int		check_for_range(int data, char *str, int flag);
@@ -51,20 +51,15 @@ int		list_length(t_list *stack);
 int		if_sorted(t_list *stack);
 int		if_rev_sorted(t_list *stack);
 int		bubblesort(t_list **stack, int len, char *str);
-int		chunk_length(t_list *stack, int chunk);
 int		find_end_position(t_list **stack_a, t_list **top_at_b, int target);
 int		reorder_a(t_list **stack_a);
 int		find_lowest_position(t_list **stack_a, int lowest_value);
 int		arraycpy(t_list **stack, int *array);
 
 void	do_bubble_swap(int *array, int len);
-void	pushback(t_list **stack_b, t_list **stack_a);
 void	is_rev_sorted(t_list *stack_a, t_list *stack_b);
 void	positions_for_radix(int *array, int len, t_list **stack);
-void	setting_(int array, int len, t_list **stack);
-void	process_a(int push_back, int limit, t_list **stack_a, t_list **stack_b);
 void	do_operations(int len, t_list **stack_b);
-void	print_stack(t_list *head); // PRINT STACK!!! REMOVE??
 void	stack_reposition(t_list **head);
 void	swap(t_list **head, char *print);
 void	swap_both(t_list *stack_a, t_list *stack_b);
